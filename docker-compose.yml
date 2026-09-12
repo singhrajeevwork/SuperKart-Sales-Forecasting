@@ -1,0 +1,14 @@
+services:
+  backend:
+    build: ./backend
+    container_name: superkart-backend
+    network_mode: host
+
+  frontend:
+    build: ./frontend
+    container_name: superkart-frontend
+    network_mode: host
+    environment:
+      BACKEND_URL: http://127.0.0.1:5000/predict
+    depends_on:
+      - backend

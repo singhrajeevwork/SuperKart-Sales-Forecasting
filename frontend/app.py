@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 import requests
+import os
 
 
 # ============================================
@@ -20,8 +21,11 @@ st.write(
 )
 
 # Backend API URL
-BACKEND_URL = "http://127.0.0.1:5000/predict"
-
+#BACKEND_URL = "http://127.0.0.1:5000/predict"
+BACKEND_URL = os.getenv(
+    "BACKEND_URL",
+    "http://127.0.0.1:5000/predict"
+)
 
 # ============================================
 # Input Features
