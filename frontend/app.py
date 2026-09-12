@@ -35,13 +35,13 @@ REQUIRED_COLUMNS = [
     'Product_Weight',
     'Product_Sugar_Content',
     'Product_Allocated_Area',
-    'Product_Type',
     'Product_MRP',
-    'Store_Id',
-    'Store_Establishment_Year',
     'Store_Size',
     'Store_Location_City_Type',
-    'Store_Type'
+    'Store_Type',
+    'Product_Id_char',
+    'Store_Age_Years',
+    'Product_Type_Category'
 ]
 
 
@@ -68,6 +68,11 @@ if prediction_mode == "Single Prediction":
     col1, col2 = st.columns(2)
 
     with col1:
+
+        product_id = st.text_input(
+            "Product ID",
+            placeholder="e.g. FD001"
+        )
 
         product_weight = st.number_input(
             "Product Weight",
@@ -148,17 +153,35 @@ if prediction_mode == "Single Prediction":
 
     if st.button("Predict Sales", type="primary"):
 
+        product_id_char = product_id[:2]
+
+        store_age_years = 2025 - store_establishment_year
+
+        perishable_products = [
+            "Dairy",
+            "Meat",
+            "Fruits and Vegetables",
+            "Breakfast",
+            "Breads",
+            "Seafood"
+        ]
+
+        product_type_category = (
+            "Perishables"
+            if product_type in perishable_products
+            else "Non Perishables"
+        )
         input_data = {
             "Product_Weight": product_weight,
             "Product_Sugar_Content": product_sugar_content,
             "Product_Allocated_Area": product_allocated_area,
-            "Product_Type": product_type,
             "Product_MRP": product_mrp,
-            "Store_Id": store_id,
-            "Store_Establishment_Year": store_establishment_year,
             "Store_Size": store_size,
             "Store_Location_City_Type": store_location_city_type,
-            "Store_Type": store_type
+            "Store_Type": store_type,
+            "Product_Id_char": product_id_char,
+            "Store_Age_Years": store_age_years,
+            "Product_Type_Category": product_type_category
         }
 
         try:

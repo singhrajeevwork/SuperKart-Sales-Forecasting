@@ -64,10 +64,12 @@ Test-set performance:
 
 | Metric | Score |
 |---|---:|
-| RMSE | 277.54 |
-| MAE | 104.61 |
+| RMSE | 278.83 |
+| MAE | 105.35 |
 | R² | 0.93 |
-| MAPE | 3.75% |
+| MAPE | 3.78% |
+
+The Tuned Random Forest outperformed the baseline Random Forest and both XGBoost configurations across RMSE, MAE, and MAPE, and was selected as the final model for deployment.
 
 ## Deployment Architecture
 
